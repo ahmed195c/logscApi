@@ -26,16 +26,6 @@ export const fetchLogs = async () => {
     return response.data;
   } catch (error) {
     console.error("Error fetching logs:", error);
-    if (error.response) {
-      // The request was made and the server responded with a status code
-      // that falls out of the range of 2xx
-      console.error("API error response data:", error.response.data);
-      console.error("API error response status:", error.response.status);
-      console.error("API error response headers:", error.response.headers);
-    } else if (error.request) {
-      // The request was made but no response was received
-      console.error("API error request:", error.request);
-    }
     throw error;
   }
 };

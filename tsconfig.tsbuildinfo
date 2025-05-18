@@ -1,0 +1,1 @@
+{"root":["./src/app.tsx","./src/api.mjs","./src/api.ts","./src/main.tsx","./src/mockapi.d.ts","./src/mockapi.js","./src/vite-env.d.ts","./src/components/apitestcomponent.tsx","./src/components/logstable.complete.tsx","./src/components/logstable.tsx","./src/components/usertable.tsx","./vite.config.ts"],"errors":true,"version":"5.8.3"}

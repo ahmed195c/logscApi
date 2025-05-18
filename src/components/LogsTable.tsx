@@ -44,14 +44,6 @@ type Log = {
   carNote?: string;
 };
 
-// API response wrapper structure
-type ApiResponse = {
-  count: number;
-  next: string | null;
-  previous: string | null;
-  results: Log[];
-};
-
 // Helper function to convert 24-hour time format to AM/PM format
 const formatTimeToAMPM = (timeString: string): string => {
   try {

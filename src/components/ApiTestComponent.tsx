@@ -1,14 +1,13 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 
 function ApiTestComponent() {
   const [apiStatus, setApiStatus] = useState("Checking API connection...");
-  const [apiData, setApiData] = useState(null);
+  const [apiData, setApiData] = useState<any>(null);
 
   useEffect(() => {
     const testApi = async () => {
       try {
-        // First, try with our configured client
         console.log(
           "Testing API connection to http://192.168.50.6:8000/api/logs/"
         );
@@ -23,21 +22,23 @@ function ApiTestComponent() {
         setApiData(response.data);
       } catch (error) {
         console.error("API Test failed:", error);
+        // Type assertion for error
+        const axiosError = error as AxiosError;
 
-        if (error.response) {
+        if (axiosError.response) {
           // The server responded with an error status
           setApiStatus(
-            `API responded with error: ${error.response.status} ${error.response.statusText}`
+            `API responded with error: ${axiosError.response.status} ${axiosError.response.statusText}`
           );
-          setApiData(error.response.data);
-        } else if (error.request) {
+          setApiData(axiosError.response.data);
+        } else if (axiosError.request) {
           // No response received
           setApiStatus(
             "No response received from API. Possible network issue or server is down."
           );
         } else {
           // Request setup error
-          setApiStatus(`Error setting up request: ${error.message}`);
+          setApiStatus(`Error setting up request: ${axiosError.message}`);
         }
       }
     };
